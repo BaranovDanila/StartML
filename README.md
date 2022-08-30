@@ -4,7 +4,7 @@ ____
 ### Repository structure:
 1. [Programming in Python](https://github.com/BaranovDanila/StartML/tree/main/Programming%20in%20Python)
 2. [Machine Learning](https://github.com/BaranovDanila/StartML/tree/main/Machine%20Learning)
-3. Deep Learning
+3. [Deep Learning](https://github.com/BaranovDanila/StartML/tree/main/Deep%20Learning)
 4. A/B tests
 
 #### The repository is updated as I learn.
