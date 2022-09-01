@@ -1,9 +1,10 @@
 import torch
-from torch import nn, optim
+from torch import nn
+from torch.optim import Optimizer
 from torch.utils.data import DataLoader
 
 
-def train(model: nn.Module, data_loader: DataLoader, optimizer: optim.Optimizer, loss_fn):
+def train(model: nn.Module, data_loader: DataLoader, optimizer: Optimizer, loss_fn):
     model.train()
     total_loss = 0
     for x, y in data_loader:
