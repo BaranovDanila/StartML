@@ -1,4 +1,3 @@
-import torch
 from torch import nn
 from torch.optim import Optimizer
 from torch.utils.data import DataLoader
@@ -11,13 +10,13 @@ def train(model: nn.Module, data_loader: DataLoader, optimizer: Optimizer, loss_
         optimizer.zero_grad()
         output = model(x)
 
-        loss = loss_fn(output, x)
+        loss = loss_fn(output, y)
+        total_loss += loss.item()
+
+        print(f'{loss:.5f}')
+
         loss.backward()
-        print(round(loss, 5))
-
         optimizer.step()
-
-        total_loss += loss
 
     total_loss /= len(data_loader)
 
