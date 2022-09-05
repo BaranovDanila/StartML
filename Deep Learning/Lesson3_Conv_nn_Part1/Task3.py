@@ -53,7 +53,7 @@ def evaluate(model: nn.Module, loader: DataLoader, loss_fn):
     return total_loss, accuracy
 
 
-def create_mlp_model():
+def create_conv_model():
     mnist_train = MNIST('./datasets/mnist', train=True, download=True, transform=T.ToTensor())
     mnist_test = MNIST('.datasets/mnist', train=False, download=True, transform=T.ToTensor())
     train_loader = DataLoader(mnist_train, batch_size=64, shuffle=True)
@@ -65,12 +65,15 @@ def create_mlp_model():
         nn.ReLU(),
         nn.MaxPool2d(kernel_size=2),
 
-        nn.Conv2d(in_channels=32, out_channels=64, kernel_size=5),
+        nn.Conv2d(in_channels=32, out_channels=64, kernel_size=5, padding=2, padding_mode='zeros'),
         nn.ReLU(),
         nn.MaxPool2d(kernel_size=2),
 
+        nn.Conv2d(in_channels=64, out_channels=128, kernel_size=3),
+        nn.ReLU(),
+
         nn.Flatten(),
-        nn.Linear(64 * 4 * 4, 128),
+        nn.Linear(128 * 4 * 4, 128),
         nn.ReLU(),
 
         nn.Linear(128, 256),
@@ -83,9 +86,9 @@ def create_mlp_model():
         if evaluate(model, test_loader, loss_fn)[1] >= 0.993:
             break
 
-    torch.save(model.state_dict(), 'weights')
+    torch.save(model.state_dict(), 'weights2')
 
     return model
 
 
-create_mlp_model()
+create_conv_model()
